@@ -1,0 +1,15 @@
+[general]
+name=GeoCSV Mapper
+qgisMinimumVersion=3.0
+description=IT: Importa file CSV con coordinate in vari formati. Riconoscimento DMS, anteprima mappa e salvataggio GeoPackage. | EN: Import CSV files with coordinates in various formats. DMS recognition, map preview, and GeoPackage saving.
+version=1.8.0
+author=Geometra Luca Casti e Dott. Sarino Alfonso Grande
+email=sino.grande@gmail.com
+category=Vector
+tags=csv,import,coordinates,dms,geopackage
+icon=icon.svg
+about=IT: Questo plugin è uno strumento avanzato per l'importazione massiva di punti tramite file CSV in QGIS.\nOffre un potente parser per il riconoscimento automatico sia delle coordinate decimali standard sia dei formati sessagesimali complessi (DMS). Implementa un'anteprima rapida su cartografia OpenStreetMap, verifica in tempo reale la codifica testuale e supporta l'esportazione automatizzata verso il moderno formato standard GeoPackage.\n\nEN: This plugin is an advanced tool for the bulk import of points via CSV files in QGIS.\nIt offers a powerful parser for automatic recognition of both standard decimal coordinates and complex sexagesimal formats (DMS). It features a quick preview on OpenStreetMap cartography, real-time text encoding verification, and automated export support to the modern GeoPackage format.
+tracker=https://github.com/sag1687/issues
+repository=https://github.com/sag1687
+hasProcessingProvider=no
+changelog=1.8.0 - Aggiunta descrizione multilingua nel file metadata (IT/EN). Revisione stabilità QGIS.
