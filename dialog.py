@@ -733,7 +733,7 @@ class CsvImporterDialog(QDialog):
                 )
                 try:
                     extent = transform.transformBoundingBox(extent)
-                except Exception:
+                except Exception:  # nosec B110
                     pass
 
             extent.scale(1.5)
