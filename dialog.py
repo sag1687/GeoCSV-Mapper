@@ -41,25 +41,15 @@ from qgis.PyQt.QtWidgets import (
 
 from . import plugin_hub
 
-if hasattr(Qt, "AlignmentFlag"):
-    QT_ALIGN_TOP = Qt.AlignmentFlag.AlignTop
-    QT_ALIGN_LEFT = Qt.AlignmentFlag.AlignLeft
-    QT_ALIGN_CENTER = Qt.AlignmentFlag.AlignCenter
-    QT_KEEP_ASPECT_RATIO = Qt.AspectRatioMode.KeepAspectRatio
-    QT_SMOOTH_TRANSFORMATION = Qt.TransformationMode.SmoothTransformation
-else:
-    QT_ALIGN_TOP = Qt.AlignTop
-    QT_ALIGN_LEFT = Qt.AlignLeft
-    QT_ALIGN_CENTER = Qt.AlignCenter
-    QT_KEEP_ASPECT_RATIO = Qt.KeepAspectRatio
-    QT_SMOOTH_TRANSFORMATION = Qt.SmoothTransformation
+# Enum in forma pienamente scoped: valida sia su PyQt5 sia su PyQt6
+QT_ALIGN_TOP = Qt.AlignmentFlag.AlignTop
+QT_ALIGN_LEFT = Qt.AlignmentFlag.AlignLeft
+QT_ALIGN_CENTER = Qt.AlignmentFlag.AlignCenter
+QT_KEEP_ASPECT_RATIO = Qt.AspectRatioMode.KeepAspectRatio
+QT_SMOOTH_TRANSFORMATION = Qt.TransformationMode.SmoothTransformation
 
-if hasattr(QDialogButtonBox, "ButtonRole"):
-    BTN_ACCEPT_ROLE = QDialogButtonBox.ButtonRole.AcceptRole
-    BTN_REJECT_ROLE = QDialogButtonBox.ButtonRole.RejectRole
-else:
-    BTN_ACCEPT_ROLE = QDialogButtonBox.AcceptRole
-    BTN_REJECT_ROLE = QDialogButtonBox.RejectRole
+BTN_ACCEPT_ROLE = QDialogButtonBox.ButtonRole.AcceptRole
+BTN_REJECT_ROLE = QDialogButtonBox.ButtonRole.RejectRole
 
 
 class CsvImporterDialog(QDialog):
