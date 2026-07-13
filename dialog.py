@@ -695,7 +695,7 @@ class CsvImporterDialog(QDialog):
             QgsProject.instance().removeMapLayer(self.preview_layer.id())
 
         self.preview_layer = QgsMemoryProviderUtils.createMemoryLayer(
-            "preview", QgsFields(), QgsWkbTypes.Point, crs
+            "preview", QgsFields(), QgsWkbTypes.Type.Point, crs
         )
 
         self.preview_layer.startEditing()
@@ -864,7 +864,7 @@ class CsvImporterDialog(QDialog):
             qgs_fields.append(QgsField(fname, QVariant.String))
 
         mem_layer = QgsMemoryProviderUtils.createMemoryLayer(
-            layer_name, qgs_fields, QgsWkbTypes.Point, crs
+            layer_name, qgs_fields, QgsWkbTypes.Type.Point, crs
         )
         mem_layer.startEditing()
 
@@ -904,7 +904,7 @@ class CsvImporterDialog(QDialog):
                 )
             )
 
-            if error == QgsVectorFileWriter.NoError:
+            if error == QgsVectorFileWriter.WriterError.NoError:
                 final_layer = QgsVectorLayer(
                     f"{save_path}|layername={layer_name}", layer_name, "ogr"
                 )
