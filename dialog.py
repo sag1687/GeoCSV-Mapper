@@ -770,7 +770,7 @@ class CsvImporterDialog(QDialog):
             d = m_end.group(1)
             if d in ["sud", "ovest", "west", "s", "w", "o"]:
                 dir_mult = -1
-            val_lower = val_lower[: m_end.start(1)] + val_lower[m_end.end(1) :]
+            val_lower = val_lower[:m_end.start(1)] + val_lower[m_end.end(1):]
         else:
             m_start = re.search(
                 r"^\s*(nord|est|sud|ovest|west|n|e|s|w|o)\s*(?:$|[^a-z0-9])",
@@ -780,9 +780,8 @@ class CsvImporterDialog(QDialog):
                 d = m_start.group(1)
                 if d in ["sud", "ovest", "west", "s", "w", "o"]:
                     dir_mult = -1
-                val_lower = (
-                    val_lower[: m_start.start(1)] + val_lower[m_start.end(1) :]
-                )
+                val_lower = (val_lower[:m_start.start(1)]
+                             + val_lower[m_start.end(1):])
 
         nums = [float(n) for n in re.findall(r"[-+]?\d*\.\d+|\d+", val_lower)]
         if not nums:
