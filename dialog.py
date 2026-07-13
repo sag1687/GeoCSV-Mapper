@@ -138,7 +138,9 @@ class CsvImporterDialog(QDialog):
         self.enc_label = QLabel("Codifica:")
         enc_h.addWidget(self.enc_label)
         self.encoding_combo = QComboBox()
-        self.encoding_combo.addItems(["utf-8", "latin1", "windows-1252", "utf-8-sig"])
+        self.encoding_combo.addItems(
+            ["utf-8", "latin1", "windows-1252", "utf-8-sig"]
+        )
         self.encoding_combo.currentTextChanged.connect(self._reload_csv)
         enc_h.addWidget(self.encoding_combo)
 
@@ -185,12 +187,17 @@ class CsvImporterDialog(QDialog):
         self.map_canvas.enableAntiAliasing(True)
         right_layout.addWidget(self.map_canvas)
 
-        urlWithParams = "type=xyz&url=https://a.tile.openstreetmap.org/{z}/{x}/{y}.png&zmax=19&zmin=0&crs=EPSG3857"
+        urlWithParams = (
+            "type=xyz&url=https://a.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            "&zmax=19&zmin=0&crs=EPSG3857"
+        )
         self.osm_layer = QgsRasterLayer(urlWithParams, "OpenStreetMap", "wms")
         if self.osm_layer.isValid():
             QgsProject.instance().addMapLayer(self.osm_layer, False)
             self.map_canvas.setLayers([self.osm_layer])
-            self.map_canvas.setDestinationCrs(QgsCoordinateReferenceSystem("EPSG:3857"))
+            self.map_canvas.setDestinationCrs(
+                QgsCoordinateReferenceSystem("EPSG:3857")
+            )
             self.map_canvas.setExtent(self.osm_layer.extent())
 
         layout.addWidget(left_panel, 1)
@@ -253,7 +260,9 @@ class CsvImporterDialog(QDialog):
         if os.path.exists(logo_path):
             pixmap = QPixmap(logo_path)
             sarino_img.setPixmap(
-                pixmap.scaled(150, 150, QT_KEEP_ASPECT_RATIO, QT_SMOOTH_TRANSFORMATION)
+                pixmap.scaled(
+                    150, 150, QT_KEEP_ASPECT_RATIO, QT_SMOOTH_TRANSFORMATION
+                )
             )
         else:
             self.sarino_logo_missing = True
@@ -277,7 +286,9 @@ class CsvImporterDialog(QDialog):
         if os.path.exists(qr_path):
             pixmap = QPixmap(qr_path)
             luca_img.setPixmap(
-                pixmap.scaled(150, 150, QT_KEEP_ASPECT_RATIO, QT_SMOOTH_TRANSFORMATION)
+                pixmap.scaled(
+                    150, 150, QT_KEEP_ASPECT_RATIO, QT_SMOOTH_TRANSFORMATION
+                )
             )
         else:
             self.luca_qr_missing = True
@@ -366,10 +377,16 @@ class CsvImporterDialog(QDialog):
                 "logo_missing": "Logo Mancante",
                 "msg_err": "Errore",
                 "msg_succ": "Success",
-                "msg_gpkg_title": "Salva come GeoPackage (Annulla per mantenere solo livello temporaneo)",
+                "msg_gpkg_title": (
+                    "Salva come GeoPackage (Annulla per mantenere solo "
+                    "livello temporaneo)"),
                 "msg_err_read": "Impossibile leggere il file CSV:",
-                "msg_succ_gpkg": "Dati salvati e caricati da GeoPackage con successo.\nPunti:",
-                "msg_err_gpkg": "Impossibile salvare in GeoPackage:\n{}\nVerrà caricato il layer temporaneo.",
+                "msg_succ_gpkg": (
+                    "Dati salvati e caricati da GeoPackage con "
+                    "successo.\nPunti:"),
+                "msg_err_gpkg": (
+                    "Impossibile salvare in GeoPackage:\n{}\nVerrà caricato "
+                    "il layer temporaneo."),
                 "msg_succ_temp": "Layer temporaneo creato.\nPunti:",
                 "txt_help": (
                     "<b>Guida all'uso di GeoCSV Mapper</b><br><br>"
@@ -379,8 +396,10 @@ class CsvImporterDialog(QDialog):
                     "caratteri speciali non vengono letti "
                     "correttamente.<br><br>"
                     "<b>2. Colonne delle coordinate:</b><br>"
-                    "Seleziona le colonne corrispondenti alle coordinate X (Longitudine/Est) e Y (Latitudine/Nord). "
-                    "Il plugin converte automaticamente sia formati decimali che sessagesimali (DMS).<br><br>"
+                    "Seleziona le colonne corrispondenti alle coordinate X "
+                    "(Longitudine/Est) e Y (Latitudine/Nord). "
+                    "Il plugin converte automaticamente sia formati decimali "
+                    "che sessagesimali (DMS).<br><br>"
                     "<b>3. CRS e Mappa:</b><br>"
                     "Seleziona il corretto Sistema di Riferimento. "
                     "L'anteprima sulla mappa verificherà la corretta "
@@ -445,10 +464,16 @@ class CsvImporterDialog(QDialog):
                 "logo_missing": "Missing Logo",
                 "msg_err": "Error",
                 "msg_succ": "Success",
-                "msg_gpkg_title": "Save as GeoPackage (Cancel to keep only a temporary layer)",
+                "msg_gpkg_title": (
+                    "Save as GeoPackage (Cancel to keep only a temporary "
+                    "layer)"),
                 "msg_err_read": "Unable to read the CSV file:",
-                "msg_succ_gpkg": "Data saved and loaded from GeoPackage successfully.\nPoints:",
-                "msg_err_gpkg": "Failed to save GeoPackage:\n{}\nA temporary layer will be loaded instead.",
+                "msg_succ_gpkg": (
+                    "Data saved and loaded from GeoPackage "
+                    "successfully.\nPoints:"),
+                "msg_err_gpkg": (
+                    "Failed to save GeoPackage:\n{}\nA temporary layer will "
+                    "be loaded instead."),
                 "msg_succ_temp": "Temporary layer created.\nPoints:",
                 "txt_help": (
                     "<b>GeoCSV Mapper User Guide</b><br><br>"
@@ -457,8 +482,10 @@ class CsvImporterDialog(QDialog):
                     "Choose the correct encoding if special characters "
                     "are not read properly.<br><br>"
                     "<b>2. Coordinate Columns:</b><br>"
-                    "Select the columns corresponding to the X (Longitude/East) and Y (Latitude/North) coordinates. "
-                    "The plugin automatically parses both decimal and sexagesimal (DMS) formats.<br><br>"
+                    "Select the columns corresponding to the X "
+                    "(Longitude/East) and Y (Latitude/North) coordinates. "
+                    "The plugin automatically parses both decimal and "
+                    "sexagesimal (DMS) formats.<br><br>"
                     "<b>3. CRS & Map:</b><br>"
                     "Select the correct Coordinate Reference System. "
                     "The map preview will verify that points are placed "
@@ -488,15 +515,25 @@ class CsvImporterDialog(QDialog):
         self.browse_btn.setText(c["btn_browse"])
         self.enc_label.setText(c["lbl_enc"])
 
-        if "attesa" in self.status_icon.text() or "Waiting" in self.status_icon.text():
+        if (
+            "attesa" in self.status_icon.text()
+            or "Waiting" in self.status_icon.text()
+        ):
             self.status_icon.setText(c["lbl_wait"])
-        elif "Operativo" in self.status_icon.text() or \
-                "Operational" in self.status_icon.text():
+        elif (
+            "Operativo" in self.status_icon.text()
+            or "Operational" in self.status_icon.text()
+        ):
             self.status_icon.setText(c["lbl_ok"])
-        elif "Codifica" in self.status_icon.text() or \
-                "Encoding" in self.status_icon.text():
+        elif (
+            "Codifica" in self.status_icon.text()
+            or "Encoding" in self.status_icon.text()
+        ):
             self.status_icon.setText(c["lbl_err_enc"])
-        elif "Errore" in self.status_icon.text() or "Error" in self.status_icon.text():
+        elif (
+            "Errore" in self.status_icon.text()
+            or "Error" in self.status_icon.text()
+        ):
             self.status_icon.setText(c["lbl_err"])
 
         self.coords_group.setTitle(c["grp_coords"])
@@ -552,13 +589,17 @@ class CsvImporterDialog(QDialog):
                 except csv.Error:
                     dialect = csv.excel
                 reader = csv.DictReader(f, dialect=dialect)
-                headers = [h.strip() for h in (reader.fieldnames or []) if h.strip()]
+                headers = [
+                    h.strip() for h in (reader.fieldnames or []) if h.strip()
+                ]
 
                 rows = []
                 for i, row in enumerate(reader):
                     if i > 1000:  # Limit preview read
                         break
-                    rows.append({k.strip(): v.strip() for k, v in row.items() if k})
+                    rows.append(
+                        {k.strip(): v.strip() for k, v in row.items() if k}
+                    )
 
             self.csv_headers = headers
             self.csv_rows = rows
@@ -568,20 +609,30 @@ class CsvImporterDialog(QDialog):
 
             lbl_ok = "🟢 Operativo" if self.lang == "it" else "🟢 Operational"
             self.status_icon.setText(lbl_ok)
-            self.status_icon.setStyleSheet("color: #2e7d32; font-weight: bold;")
+            self.status_icon.setStyleSheet(
+                "color: #2e7d32; font-weight: bold;"
+            )
             self.import_btn.setEnabled(True)
 
             self._update_preview_map()
 
         except UnicodeDecodeError:
-            lbl_err = "🔴 Errore Codifica" if self.lang == "it" else "🔴 Encoding Error"
+            lbl_err = (
+                "🔴 Errore Codifica"
+                if self.lang == "it"
+                else "🔴 Encoding Error"
+            )
             self.status_icon.setText(lbl_err)
-            self.status_icon.setStyleSheet("color: #c62828; font-weight: bold;")
+            self.status_icon.setStyleSheet(
+                "color: #c62828; font-weight: bold;"
+            )
             self.import_btn.setEnabled(False)
         except Exception:
             lbl_err = "🔴 Errore" if self.lang == "it" else "🔴 Error"
             self.status_icon.setText(lbl_err)
-            self.status_icon.setStyleSheet("color: #c62828; font-weight: bold;")
+            self.status_icon.setStyleSheet(
+                "color: #c62828; font-weight: bold;"
+            )
             self.import_btn.setEnabled(False)
 
     def _populate_combos(self):
@@ -712,22 +763,26 @@ class CsvImporterDialog(QDialog):
         dir_mult = 1
 
         m_end = re.search(
-            r"(?:^|[^a-z0-9])\s*(nord|est|sud|ovest|west|n|e|s|w|o)\s*$", val_lower
+            r"(?:^|[^a-z0-9])\s*(nord|est|sud|ovest|west|n|e|s|w|o)\s*$",
+            val_lower,
         )
         if m_end:
             d = m_end.group(1)
             if d in ["sud", "ovest", "west", "s", "w", "o"]:
                 dir_mult = -1
-            val_lower = val_lower[: m_end.start(1)] + val_lower[m_end.end(1):]
+            val_lower = val_lower[: m_end.start(1)] + val_lower[m_end.end(1) :]
         else:
             m_start = re.search(
-                r"^\s*(nord|est|sud|ovest|west|n|e|s|w|o)\s*(?:$|[^a-z0-9])", val_lower
+                r"^\s*(nord|est|sud|ovest|west|n|e|s|w|o)\s*(?:$|[^a-z0-9])",
+                val_lower,
             )
             if m_start:
                 d = m_start.group(1)
                 if d in ["sud", "ovest", "west", "s", "w", "o"]:
                     dir_mult = -1
-                val_lower = val_lower[: m_start.start(1)] + val_lower[m_start.end(1):]
+                val_lower = (
+                    val_lower[: m_start.start(1)] + val_lower[m_start.end(1) :]
+                )
 
         nums = [float(n) for n in re.findall(r"[-+]?\d*\.\d+|\d+", val_lower)]
         if not nums:
@@ -741,7 +796,11 @@ class CsvImporterDialog(QDialog):
         elif len(nums) >= 3:
             deg = nums[0]
             sign = -1 if deg < 0 or str(val).strip().startswith("-") else 1
-            return sign * (abs(deg) + nums[1] / 60.0 + nums[2] / 3600.0) * dir_mult
+            return (
+                sign
+                * (abs(deg) + nums[1] / 60.0 + nums[2] / 3600.0)
+                * dir_mult
+            )
         return None
 
     def _on_import_clicked(self):
@@ -759,18 +818,30 @@ class CsvImporterDialog(QDialog):
                 "msg_err": "Errore",
                 "msg_succ": "Successo",
                 "msg_err_read": "Impossibile leggere il file CSV:",
-                "msg_gpkg_title": "Salva come GeoPackage (Annulla per mantenere solo livello temporaneo)",
-                "msg_succ_gpkg": "Dati salvati e caricati da GeoPackage con successo.\nPunti:",
-                "msg_err_gpkg": "Impossibile salvare in GeoPackage:\n{}\nVerrà caricato il layer temporaneo.",
+                "msg_gpkg_title": (
+                    "Salva come GeoPackage (Annulla per mantenere solo "
+                    "livello temporaneo)"),
+                "msg_succ_gpkg": (
+                    "Dati salvati e caricati da GeoPackage con "
+                    "successo.\nPunti:"),
+                "msg_err_gpkg": (
+                    "Impossibile salvare in GeoPackage:\n{}\nVerrà caricato "
+                    "il layer temporaneo."),
                 "msg_succ_temp": "Layer temporaneo creato.\nPunti:",
             },
             "en": {
                 "msg_err": "Error",
                 "msg_succ": "Success",
                 "msg_err_read": "Unable to read the CSV file:",
-                "msg_gpkg_title": "Save as GeoPackage (Cancel to keep only a temporary layer)",
-                "msg_succ_gpkg": "Data saved and loaded from GeoPackage successfully.\nPoints:",
-                "msg_err_gpkg": "Failed to save GeoPackage:\n{}\nA temporary layer will be loaded instead.",
+                "msg_gpkg_title": (
+                    "Save as GeoPackage (Cancel to keep only a temporary "
+                    "layer)"),
+                "msg_succ_gpkg": (
+                    "Data saved and loaded from GeoPackage "
+                    "successfully.\nPoints:"),
+                "msg_err_gpkg": (
+                    "Failed to save GeoPackage:\n{}\nA temporary layer will "
+                    "be loaded instead."),
                 "msg_succ_temp": "Temporary layer created.\nPoints:",
             },
         }[self.lang]
@@ -785,14 +856,18 @@ class CsvImporterDialog(QDialog):
                     dialect = csv.excel
                 reader = csv.DictReader(f, dialect=dialect)
                 fieldnames = [
-                    fn.strip() for fn in (reader.fieldnames or []) if fn.strip()
+                    fn.strip()
+                    for fn in (reader.fieldnames or [])
+                    if fn.strip()
                 ]
                 all_rows = [
                     {k.strip(): v.strip() for k, v in row.items() if k}
                     for row in reader
                 ]
         except Exception as e:
-            QMessageBox.critical(self, t["msg_err"], f"{t['msg_err_read']} {e}")
+            QMessageBox.critical(
+                self, t["msg_err"], f"{t['msg_err_read']} {e}"
+            )
             return
 
         qgs_fields = QgsFields()
@@ -819,7 +894,10 @@ class CsvImporterDialog(QDialog):
         mem_layer.commitChanges()
 
         save_path, _ = QFileDialog.getSaveFileName(
-            self, t["msg_gpkg_title"], f"{layer_name}.gpkg", "GeoPackage (*.gpkg)"
+            self,
+            t["msg_gpkg_title"],
+            f"{layer_name}.gpkg",
+            "GeoPackage (*.gpkg)",
         )
 
         if save_path:
@@ -857,7 +935,9 @@ class CsvImporterDialog(QDialog):
 
         QgsProject.instance().addMapLayer(mem_layer)
         QMessageBox.information(
-            self, t["msg_succ"], f"{t['msg_succ_temp']} {mem_layer.featureCount()}"
+            self,
+            t["msg_succ"],
+            f"{t['msg_succ_temp']} {mem_layer.featureCount()}",
         )
         self.accept()
 

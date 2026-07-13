@@ -26,7 +26,9 @@ class CsvImporterPlugin:
         if os.path.exists(icon_path):
             icon = QIcon(icon_path)
         else:
-            icon = QgsApplication.getThemeIcon("/mActionAddDelimitedTextLayer.svg")
+            icon = QgsApplication.getThemeIcon(
+                "/mActionAddDelimitedTextLayer.svg"
+            )
 
         self.action = QAction(
             icon, "GeoCSV Mapper - Importa XY", self.iface.mainWindow()
